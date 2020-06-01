@@ -1,0 +1,21 @@
+   什么是内存泄露?
+当对象不再有用，它占有的内存无法被回收。
+
+    ThreadLocal的Value内存泄露问题
+
+    内存泄露的引用链
+    Thread一> ThreadLocalMap一> Entry ( key为null )->Value
+
+产生原因:
+◆ThreadLocalMap的每个Entry都是一个对key的弱引用 ,同时,每个Entry都包含了一个对value的强引用.
+◆正常情况下,当线程终止,保存在ThreadLocal里的value会被垃圾回收,因为没有任何强引用了
+◆但是,如果线程不终止(比如线程需要保持很久) , 那么key对应的value就不能被回收,因为有以下的调用链:
+             Thread一> ThreadLocalMap一> Entry ( key为null )->Value
+
+引发后果:
+◆因为value和Thread之间还存在这个强引|用链路,所以导致value无法回收,就可能会出现OOM
+
+解决方案:
+◆JDK已经考虑到了这个问题,所以在set, remove, rehash方法中会扫描key为null的Entry ,并把对应的value设置为null ,
+  这样value对象就可以被回收
+  当不再使用ThreadLocal中的变量的时候，需要调用它的remove方法，手动将他制空。
