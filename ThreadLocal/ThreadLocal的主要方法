@@ -16,3 +16,7 @@
    2.注意，这个map以及map中的key和value都是保存在线程中的,而不是保存在ThreadLocal中。
 
 ◆void remove( ) :删除对应这个线程的值
+
+             使用InitialValue方法和set方法的实质
+◆通过源码分析可以看出, setInitialValue和直接set最后都是利用map.set()方法来设置值。
+◆也就是说,最后都会对应到ThreadLocalMap的一个Entry ,只不过是起点和入口不一样
