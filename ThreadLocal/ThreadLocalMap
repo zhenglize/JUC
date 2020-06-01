@@ -1,0 +1,13 @@
+                ThreadLocalMap
+
+◆ ThreadLocalMap类,也就是Thread.threadLocals
+
+◆ThreadLocalMap类是每个线程Thread类里面的变量,里面最重要的是一个键值对数组Entry[] table ,
+  可以认为是一个map,键值对:
+  ◆键:这个ThreadLocal
+  ◆值:实际需要的成员变量,比如user或者simpleDateFormat对象
+
+  ThreadLocalMap的哈希冲突问题
+ThreadLocalMap这里采用的是线性探测法,也就是如果发生冲突,就继续找下一个空位置,而不是用链表拉链。
+链表拉链就是在冲突的下面使用链表进行节点的连接
+线路探测是寻找下一个没有哈希冲突的位置
