@@ -11,6 +11,10 @@
 ◆通常情况下，Lock只允许一个线程来访问这个共享资源。 不过有的时候,一些特殊的实现也可允许并发访问,
   比如ReadWriteLock里面的ReadLock.
 
+可见性保证
+◆happens-before
+◆Lock的加解锁和synchronized有同样的内存语义,也就是说,下一个线程加锁后可以看到所有前一个线程解锁前发生的所有操作
+
           synchronized和lock有什么区别?用新的lock有什么好处?你举例说说
 
 1.原始构成
