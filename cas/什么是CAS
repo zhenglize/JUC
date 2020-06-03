@@ -1,0 +1,41 @@
+                        什么是cas?
+◆CAS的全称为Compare-And-Swap, 它是一条CPU并发原语。
+  它的功能是判断内存某个位置的值是否为预期值，如果是则更改为新的值，这个过程是原子的。
+◆CAS并发原语体现在JAVA语言中就是sun.misc.Unsafe类中的各个方法。调用UnSafe类中的CAS方法，
+  JVM会帮我们实现出CAS汇编指令。这是一种完全依赖于硬件的功能，通过它实现了原子操作。
+◆再次强调，由于CAS是一种系统原语，原语属于操作系统用语范畴，是由若干条指令组成的，用于完成某个功能的一个过程，
+并且原语的执行必须是连续的，在执行过程中不允许被中断，也就是说CAS是一条CPU的原子指令，不会造成所谓的数据不一致问题。
+
+可以简单的理解为:
+◆我认为V的值应该是A ,如果是的话那我就把它改成B ,如果不是A (说明被别人修改过了),那我就不修改了,
+  避免多人同时修改导致出错.
+◆CAS有三个操作数:内存值V、预期值A、要修改的值B ,当且仅当预期值A和内存值V相同时,才将内存值修改为B ,否则什么都不做。
+ 最后返回现在的V值
+
+                   CAS的应用场景:
+◆乐观锁
+◆并发容器
+◆原子类
+              分析在Java中是如何利用CAS实现原子操作的?
+◆AtomicInteger加载Unsafe工具,用来直接操作内存数据
+◆用Unsafe来实现底层操作
+◆用volatile修饰value字段,保证可见性
+◆getAndAddInt方法分析
+第一个参数是当前值对象。
+第二个参数是该变量值在内存中的偏移地址，因为Unsafe是根据内存偏移地址来获取数据的。
+第三个参数是每次自增长1.变量值的value都是通过Volatile来修饰的，通过这种方法来保证可见性。
+ public final int incrementAndGet() {
+   return unsafe.getAndAddInt(this, valueOffset, 1);
+ }
+◆var1 AtomicInteger对象本身。
+◆var2该对象值得引用地址。
+◆var4需要变动的数量
+◆var5是用过var1，var2找出的主内存中真实的值。
+◆用该对象当前的值与var5比较:如果相同，更新var5+var4并且返回true,如果不同，继续取值然后再比较，直到更新完成。
+ public final int getAndAddInt(object var1, 1ong var2, int var4) {
+     int var5;
+     do{
+        var5 = this.getIntVolatile(var1, var2);
+     }while( !this. compareAndSwapInt(var1, var2, var5, var5 + var4));
+     return var5;
+ }
