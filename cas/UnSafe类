@@ -1,0 +1,16 @@
+                        UnSafe类
+◆Unsafe是CAS的核心类。Java无法直接访问底层操作系统,而是通过本地(native)方法来访问。不过尽管如此,
+  JVM还是开了一个后门, JDK中有一个类Unsafe，它提供了硬件级别的原子操作。
+◆valueOffset表示的是变量值在内存中的偏移地址,因为Unsafe就是根据内存偏移地址获取数据的原值的,这样我们
+  就能通过unsafe来实现CAS了。
+◆注意Unsafe类中的所有方法都是native修饰的，也就是说Unsafe类中的方法都直接调用操作系统底层资源执行相应任务
+                       UnSafe的底层源码
+private static fina1 Unsafe unsafe = Unsafe.getUnsafe();
+private static final long valueOffset;
+static {
+    try {
+       vaLueOffset = unsafe.objectFieldOffset
+                    (Atomicinteger.class. getDeclaredField("value"));
+    }catch (Exception ex) { throw new Error(ex); }
+     private volatile 1nt value;
+}
