@@ -1,0 +1,14 @@
+                        CAS缺点-------自旋时间过长
+只能保证一一个共享变量的原子操作。
+
+循环时间长开销很大。
+
+可以看到getAndAddInt方法执行时，有个do while
+ public final int getAndAddInt(object var1, 1ong var2, int var4) {
+     int var5;
+     do{
+        var5 = this.getIntVolatile(var1, var2);
+     }while( !this. compareAndSwapInt(var1, var2, var5, var5 + var4));
+     return var5;
+ }
+如果CAS失败，会一直进行尝试。如果CAS长时间一直不成功，可能会给CPU带来很大的开销。
