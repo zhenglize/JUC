@@ -1,0 +1,17 @@
+                    JDK1.7的ConcurrentHashMap实现和分析
+◆Java 7中的ConcurrentHashMap最外层是多个segment ,每个segment的底层数据结构与HashMap类似,
+  仍然是数组和链表组成的拉链法
+
+◆每个segment独立上ReentrantLock锁,每个segment之间互不影响,提高了并发效率
+
+◆ConcurrentHashMap 默认有16个Segments ,所以最多可以同时支持16个线程并发写(操作分别分布在不同的Segment上)。
+  这个默认值可以在初始化的时候设置为其他值，但是一旦初始化以后,是不可以扩容的
+
+
+
+
+
+
+
+
+
