@@ -1,0 +1,13 @@
+                        Map接口简介
+●HashMap
+   根据键计算出hashcode去存储，由于可以计算出它的hashcode值，所以它的查找速度非常快。
+   允许key的值为null. 线程非安全。
+
+●Hashtable
+   hashtable线程安全,不允许key的值为空
+
+◆LinkedHashMap
+    LinkedHashMap保存插入顺序，遍历时的顺序和插入顺序相同。
+
+●TreeMap
+     TreeMap能进行排序的map
