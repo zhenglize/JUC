@@ -1,0 +1,17 @@
+                        早起JDK线程安全的容器
+Vector 线程安全的List
+
+Hashtable 线程安全的map
+
+Vector与Hashtable被弃用的原因？
+并发性能差，方法大多数都用synchronized修饰。
+
+Collections.synchronizedList(new ArrayList<E>()
+加锁的ArrayList
+
+Collections.synchronizedMap(new HashMap<K, V>())
+加锁的HashMap
+
+synchronizedList与synchronizedMap特点？
+较Vector与Hashtable做了一定程度的改进，但效率还不是很好。前一个使用Synchronized修饰方法。
+这个是使用同步代码块这样的形式。
