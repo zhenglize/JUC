@@ -1,0 +1,33 @@
+CopyOnWriteArrayList诞生
+
+◆代替Vector和SynchronizedList ,就和ConcurrentHashMap代替SynchronizedMap的原因一样
+
+◆Vector和SynchronizedList的锁的粒度太大,并发效率相对比较低，并且迭代时无法编辑
+
+◆Copy-On-Write并发容器还包括CopyOnWriteArraySet ,用来替代同步Set
+
+CopyOnWriteArrayList适用场景
+
+◆读操作可以尽可能地快,而写即使慢一些也没有太大关系
+
+◆读多写少:黑名单,每日更新;监听器:迭代操作远多余修改操作
+
+HashSet的底层实现？
+
+◆HashSet的底层数据结构是HashMap,之所以add方法只添加一个是因为，它的key是想要添加的那个值而Value
+  是一个Object类型的PRECENT的常量值， 只是HashSet不关心它的Value值而已。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
