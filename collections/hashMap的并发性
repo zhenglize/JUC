@@ -1,0 +1,5 @@
+                    HashMap关于并发的特点
+1.非线程安全
+2.迭代时不允许修改内容
+3. 只读的并发是安全的
+4.如果一定要把HashMap用在并发环境,用Collections.synchronizedMap(new HashMap())
