@@ -1,0 +1,28 @@
+                                阻塞队列介绍
+
+1.ArrayBlockingQueue: 由数组结构组成的有界阻塞队列。
+
+2.LinkedBlockingQueue:由链表结构组成的有界(但大小默认值为Integer.MAX_VALUE)阻塞队列大小是无穷大的
+
+3.PriorityBlockingQueue:支持优先级排序的无界阻塞队列。
+
+4.DelayQueue:使用优先级队列实现的延迟无界阻塞队列。
+
+5.SynchronousQueue:不存储元素的阻塞队列，也即单个元素的队列。
+
+6.LinkedTransferQueue:由链表结构组成的无界阻塞队列。
+
+7.LinkedBlockingDeque:由链表结构组成的双向阻塞队列
+
+
+
+
+
+
+
+
+
+
+
+
+
