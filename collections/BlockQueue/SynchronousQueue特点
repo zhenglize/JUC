@@ -1,0 +1,20 @@
+                        SynchronousQueue注意点
+
+◆SynchronousQueue没有peek等函数,因为peek的含义是取出头结点,但是SynchronousQueue的容量是0 ,所以连头结
+  点都没有,也就没有peek方法。同理,没有iterate相关方法
+
+◆是一个极好的用来直接传递的并发数据结构
+
+◆SynchronousQueue是线程池Executors.newCachedThreadPool()使用的阻塞队列
+
+
+
+
+
+
+
+
+
+
+
+
