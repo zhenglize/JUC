@@ -1,4 +1,8 @@
                             CyclicBarrier循环栅栏
+CyclicBarrier的字面意思是可循环(Cyclic) 使用的屏障(Barrier)。它要做的事情是，
+让一组线程到达一个屏障(也可以叫同步点)时被阻塞，直到最后一个线程到达屏障时,屏障才会开门，
+所有被屏障拦截的线程才会继续干活，线程进入屏障通过CyclicBarrier的await()方法。
+
 ◆CyclicBarrier循环栅栏和CountDownLatch很类似,都能阻塞一组线程
 
 ◆当有大量线程相互配合,分别计算不同任务,并且需要最后统一汇总的时候,我们可以使用CyclicBarrier。
