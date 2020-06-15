@@ -1,0 +1,5 @@
+                        使用AQS写一个自己的线程协作类
+◆第一步:写一个类,想好协作的逻辑,实现获取/释放方法。
+◆第二步:内部写一个Sync类继承AbstractQueuedSynchronizer
+◆第三步:根据是否独占来重写tryAcquire/tryRelease或tryAcquireShared (int acquires)和
+  tryReleaseShared(int releases)等方法,在之前写的获取/释放方法中调用AQS的acquire/release或者Shared方法
