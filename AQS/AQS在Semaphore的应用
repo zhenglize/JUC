@@ -1,0 +1,6 @@
+                        AQS在Semaphore的应用
+◆在Semaphore中, state表示许可证的剩余数量。
+◆看tryAcquire方法 ,判断nonfairTryAcquireShared大于等于0的话,代表成功
+◆这里会先检查剩余许可证数量够不够这次需要的 ,用减法来计算,如果直接不够,那就返回负数,表示失败,如果够了，就
+  用自旋加compareAndSetState来改变state状态，直到改变成功就返回正数;或者是期间如果被其他人修改了导致剩余数
+  量不够了,那也返回负数代表获取失败
