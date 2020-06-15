@@ -1,0 +1,42 @@
+                        Callable与future常用的方法
+get()方法:获取结果
+get方法的行为取决于Callable任务的状态，只有以下这5种情况
+1.任务正常完成: get方法会立刻返回结果
+2.任务尚未完成(任务还没开始或进行中) : get将阻塞并直到任务完成。
+3.任务执行过程中抛出Exception : get方法会抛出ExecutionException :这里的抛出异常,是call()执行时产生的
+  那个异常,看到这个异常类型是java.util.concurrent. ExecutionException。不论call()执行时抛出的异常类型
+  是什么,最后get方法抛出的异常类型都是ExecutionException。
+4.任务被取消: get方法会抛出CancellationException
+5.任务超时: get方法有一个重载方法,是传入一个延迟时间的如果时间到了还没有获得结果, get方法就会
+  抛出TimeoutException。
+
+get(long timeout, TimeUnit unit) :有超时的获取
+◆用get(long timeout, TimeUnit unit)方法时,如果call()在规定时间内完成了任务,那么就会正常获取到返回值;
+  而如果再指定时间内没有计算出结果,那么就会抛出TimeoutException
+◆超时不获取,任务需取消
+
+cancel方法
+◆取消任务的执行
+
+◆isDone(方法:判断线程是否执行完毕
+
+◆isCancelled()方法 :判断是否被取消
+
+cancel方法:取消任务的执行
+1.如果这个任务还没有开始执行,那么这种情况最简单,任务会被正常的取消,未来也不会被执行,方法返回true。
+2.如果任务已完成，或者已取消:那么cancel()方法会执行失败,方法返回false。
+3.如果这个任务已经开始执行了,那么这个取消方法将不会直接取消该任务,而是会根据我们填的参数
+  mayInterruptIfRunning做判断
+
+Future.cancel(true)适用于:
+1.任务能够处理interrupt
+   Future.cancel(false)仅用于避免启动尚未启动的任务, 适用于:
+1.未能处理interrupt的任务
+2.不清楚任务是否支持取消
+3.需要等待已经开始的任务执行完成
+
+
+
+
+
+
