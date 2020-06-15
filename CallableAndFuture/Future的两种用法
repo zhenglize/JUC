@@ -1,0 +1,20 @@
+                    Future的两种用法
+用法1 :线程池的submit方法返回Future对象
+◆首先,我们要给线程池提交我们的任务,提交时线程池会立刻返回给我们一个空的Future容器。当线程的任务一旦
+  执行完毕也就是当我们可以获取结果的时候，线程池便会把该结果填入到之前给我们的那个Future中去(而不是
+  创建一个新的Future ) , 我们此时便可以从该Future中获得任务执行的结果
+
+用法2 :用FutureTask来创建Future
+◆用FutureTask来获取Future和任务的结果
+◆FutureTask是一 种包装器,可以把Callable转化成Future和Runnable,它同时实现二者的接口
+  它既可以作为Runnable被线程执行,又可以作为Future得到Callable的返回值
+
+
+
+
+
+
+
+
+
+
