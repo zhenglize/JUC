@@ -1,0 +1,13 @@
+start方法的执行流程是什么?
+1.检查线程状态，只有NEW状态下的线程才能继续，否则会抛出llegalThreadStateException
+  (在运行中或者已结束的线程，都不能再次启动)
+2.被加入线程组
+3.调用start0()方法启动线程
+
+注意点:
+start方法是被synchronized修饰的方法，可以保证线程安全;
+由JVM创建的main方法线程和system组线程,并不会通过start来启动。
+
+
+
+
